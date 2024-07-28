@@ -6,8 +6,9 @@ namespace App\Providers;
 use App\Services\IpAddress\Factories\CreateIpAddressFactory;
 use App\Services\IpAddress\Interfaces\CreateIpAddressFactoryInterface;
 use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\IpAddressRepository;
+use App\Repositories\Interfaces\IpAddressRepositoryInterface;
 use App\Repositories\UserRepository;
-
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
 
@@ -25,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
        $this->app->bind(CreateIpAddressFactoryInterface::class, CreateIpAddressFactory::class);
        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+       $this->app->bind(IpAddressRepositoryInterface::class, IpAddressRepository::class);
     }
 
     /**

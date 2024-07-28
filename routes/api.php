@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\IpAddress\CreateIpAddressController;
+use App\Http\Controllers\API\IpAddress\ListIpAddressController;
 use App\Http\Controllers\API\UpdateIpAddressController;
 use App\Http\Controllers\API\AuditLogController;
 use App\Http\Controllers\API\Authentication\LoginController;
@@ -18,6 +19,10 @@ Route::group([
     Route::post('/', [
         'as' => 'create',
         'uses' => CreateIpAddressController::class,
+    ]);
+    Route::get('/list', [
+        'as' => 'list',
+        'uses' => ListIpAddressController::class,
     ]);
 });
 

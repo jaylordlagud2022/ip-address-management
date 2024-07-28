@@ -19,6 +19,8 @@ services:
             - 'host.docker.internal:host-gateway'
         ports:
             - '${APP_PORT:-80}:80'
+            - "5173:5173"  # Vite development server
+
         environment:
             WWWUSER: '${WWWUSER}'
             LARAVEL_SAIL: 1

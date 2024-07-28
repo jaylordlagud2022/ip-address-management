@@ -23,4 +23,19 @@ final class IpAddress extends AbstractModel
         'ip_address' => 'string',
         'label' => 'string',
     ];
+
+   public function getId(): int
+    {
+        return $this->getAttribute('id');
+    }
+
+    public function getLabel(): string
+    {
+        return $this->getAttribute('label');
+    }
+
+    public function getIpAddress(): string
+    {
+    return $this->getAttribute('ip_address');
+    }
 }
