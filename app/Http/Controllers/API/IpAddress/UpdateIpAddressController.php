@@ -30,7 +30,6 @@ final class UpdateIpAddressController extends AbstractAPIController
                'label' => $request->getLabel()
            ];
 
-        $ipAddress->label = $request->getLabel();
         $this->ipAddressRepository->updateLabel($ipAddress , new UpdateIpAddressResource($updates));
 
         return new IpAddressResource($ipAddress);
