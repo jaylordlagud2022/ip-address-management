@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Response as ResponseAlias;
 
 abstract class AbstractAPIController
 {
-    public const INTERNAL_BUCKET = 'CRM-ADMIN';
 
     public function getUser(): ?User
     {
