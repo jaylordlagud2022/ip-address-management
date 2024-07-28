@@ -24,6 +24,13 @@ final class IpAddress extends AbstractModel
         'label' => 'string',
     ];
 
+    public function setLabel(string $label): self
+    {
+        $this->setAttribute('label', $label);
+
+        return $this;
+    }
+
    public function getId(): int
     {
         return $this->getAttribute('id');

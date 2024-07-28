@@ -9,19 +9,22 @@
 
         <h2>IP Addresses</h2>
         <div v-if="loading" class="spinner-border text-primary" role="status">
-            <span class="sr-only">Loading...</span>
         </div>
         <table v-else class="table table-striped">
             <thead>
                 <tr>
                     <th>Label</th>
                     <th>IP Address</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="ip in ipAddresses" :key="ip.id">
                     <td>{{ ip.label }}</td>
                     <td>{{ ip.ip_address }}</td>
+                    <td>
+                        <router-link :to="{ name: 'edit-ip', params: { id: ip.id } }" class="btn btn-sm btn-warning">Edit</router-link>
+                    </td>
                 </tr>
             </tbody>
         </table>

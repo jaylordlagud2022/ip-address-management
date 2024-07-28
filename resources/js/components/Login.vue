@@ -17,7 +17,10 @@
                     Please enter your password.
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            <button type="submit" class="btn btn-primary" :disabled="loading">
+                <span v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Login
+            </button>
         </form>
 
         <div v-if="errorMessage" class="alert alert-danger mt-3" role="alert">
@@ -34,11 +37,14 @@ export default {
         return {
             email: '',
             password: '',
-            errorMessage: ''
+            errorMessage: '',
+            loading: false
         };
     },
     methods: {
         async login() {
+            this.loading = true;
+            this.errorMessage = '';
             try {
                 const response = await axios.post('/api/authenticate', {
                     email: this.email,
@@ -48,6 +54,8 @@ export default {
                 this.$router.push('/admin');
             } catch (error) {
                 this.errorMessage = 'Invalid credentials';
+            } finally {
+                this.loading = false;
             }
         }
     }
@@ -57,5 +65,8 @@ export default {
 <style>
 .container {
     max-width: 600px;
+}
+.spinner-border {
+    margin-right: 0.5em;
 }
 </style>
