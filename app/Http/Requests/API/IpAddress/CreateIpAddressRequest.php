@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\API\IpAddress;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseRequest;
 
-final class CreateIpAddressRequest extends FormRequest
+final class CreateIpAddressRequest extends BaseRequest
 {
     public function authorize(): bool
     {
@@ -16,7 +16,7 @@ final class CreateIpAddressRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'ip_address' => 'required|ip|unique:ip_addresses',
+            'ip_address' => 'required|ip|unique:ip_addresses,ip_address',
             'label' => 'required|string|max:255',
         ];
     }

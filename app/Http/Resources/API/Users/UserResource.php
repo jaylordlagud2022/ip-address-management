@@ -28,8 +28,6 @@ final class UserResource extends Resource
         /** @var User $user */
         $user = $this->resource;
 
-        $userType = $user->getUserType();
-
         $result = [
             'id' => $user->getId(),
             'email' => $user->getEmail(),

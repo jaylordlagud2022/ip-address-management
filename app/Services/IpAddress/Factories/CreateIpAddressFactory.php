@@ -12,7 +12,7 @@ final class CreateIpAddressFactory implements CreateIpAddressFactoryInterface
     public function createIpAddress(array $data): IpAddress
     {
         $ipAddress = IpAddress::create($data);
-        $this->logAction('create', $ipAddress);
+
         return $ipAddress;
     }
 }

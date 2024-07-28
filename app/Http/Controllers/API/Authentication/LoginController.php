@@ -69,10 +69,9 @@ final class LoginController extends AbstractAPIController
         $request = Request::create('/oauth/token', 'POST');
 
         $request->headers->set('Accept', 'application/json');
-
         $request->request->add([
-            'client_id' => Config::get('auth.guards.api.client_id'),
-            'client_secret' => Config::get('auth.guards.api.client_secret'),
+            'client_id' => env('CLIENT_ID'),
+            'client_secret' => env('CLIENT_SECRET'),
             'grant_type' => 'password',
             'username' => $username,
             'password' => $password,
