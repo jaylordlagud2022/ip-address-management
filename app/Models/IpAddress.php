@@ -43,6 +43,6 @@ final class IpAddress extends AbstractModel
 
     public function getIpAddress(): string
     {
-    return $this->getAttribute('ip_address');
+        return $this->getAttribute('ip_address');
     }
 }

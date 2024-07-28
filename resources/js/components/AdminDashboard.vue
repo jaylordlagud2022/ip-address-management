@@ -4,12 +4,11 @@
         <h1 class="mb-4">Admin Dashboard</h1>
         <div class="d-flex justify-content-between mb-4">
             <router-link to="/insert-ip" class="btn btn-primary">Insert IP Address</router-link>
-            <button @click="logout" class="btn btn-danger">Logout</button>
+            <router-link to="/audit-logs" class="btn btn-secondary">Show Audit Logs</router-link>
         </div>
 
         <h2>IP Addresses</h2>
-        <div v-if="loading" class="spinner-border text-primary" role="status">
-        </div>
+        <div v-if="loading" class="spinner-border text-primary" role="status"></div>
         <table v-else class="table table-striped">
             <thead>
                 <tr>
