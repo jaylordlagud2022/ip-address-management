@@ -12,7 +12,16 @@ final class CreateIpAddressFactory implements CreateIpAddressFactoryInterface
     public function createIpAddress(array $data): IpAddress
     {
         $ipAddress = IpAddress::create($data);
-
+        $this->logAction('create', $ipAddress);
         return $ipAddress;
+    }
+
+    protected function logAction(string $action, IpAddress $ipAddress): void
+    {
+        AuditLog::create([
+            'user_id' => Auth::id(),
+            'action' => $action,
+            'description' => "IP address {$ipAddress->ip_address} was {$action}d",
+        ]);
     }
 }

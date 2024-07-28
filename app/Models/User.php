@@ -46,6 +46,11 @@ final class User extends Authenticatable
         ];
     }
 
+    public function getId(): int
+    {
+        return $this->getAttribute('id');
+    }
+
     public function getEmail(): string
     {
         return $this->getAttribute('email');

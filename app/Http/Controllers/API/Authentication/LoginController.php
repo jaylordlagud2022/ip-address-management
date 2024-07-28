@@ -8,14 +8,15 @@ use App\Http\Controllers\API\AbstractAPIController;
 use App\Http\Requests\API\Authentication\LoginRequest;
 use App\Http\Resources\API\Authentication\UserAccessTokenResource;
 use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Models\AuditLog;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
-use function in_array;
 
 final class LoginController extends AbstractAPIController
 {
@@ -49,6 +50,7 @@ final class LoginController extends AbstractAPIController
 
             $response['user'] = $user;
 
+            $this->logAction($user->id, 'login', 'Login successful');
             return new UserAccessTokenResource($response);
         } catch (Exception $exception) {
             return new JsonResource(
@@ -80,5 +82,21 @@ final class LoginController extends AbstractAPIController
         $res = app()->handle($request);
 
         return json_decode($res->getContent(), true);
+    }
+
+    /**
+     * Log an action to the audit log.
+     *
+     * @param int|string $userId
+     * @param string $action
+     * @param string $description
+     */
+    private function logAction(int|string $userId, string $action, string $description): void
+    {
+        AuditLog::create([
+            'user_id' => is_numeric($userId) ? (int)$userId : null,
+            'action' => $action,
+            'description' => $description,
+        ]);
     }
 }
